@@ -7,14 +7,17 @@ from web.utils import soundcloud_client_for_user
 
 
 @login_required
-def index(request, userid=None):
-    user = get_object_or_404(User, pk=userid or request.user.id)
+def index(request):
+    userid = request.GET.get("userid") or request.user.id
+    user = get_object_or_404(User, pk=userid)
     client = soundcloud_client_for_user(user)
 
     tracks = [s['origin'] for s in
               client.get("/me/activities", limit=50).obj['collection']]
 
-    return render_to_response("index.html", {"tracks": tracks},
+    users = User.objects.all()
+    return render_to_response("index.html",
+                              {"tracks": tracks, "users": users},
                               RequestContext(request))
 
 def login(request):
