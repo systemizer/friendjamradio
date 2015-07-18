@@ -1,12 +1,21 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render_to_response
+from django.contrib.auth.models import User
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 
-from web.utils import fb_sc_login_required
+from web.utils import soundcloud_client_for_user
+
 
 @login_required
-def index(request):
-    return render_to_response("index.html", RequestContext(request))
+def index(request, userid=None):
+    user = get_object_or_404(User, pk=userid or request.user.id)
+    client = soundcloud_client_for_user(user)
+
+    tracks = [s['origin'] for s in
+              client.get("/me/activities").obj['collection']]
+
+    return render_to_response("index.html", {"tracks": tracks},
+                              RequestContext(request))
 
 def login(request):
     return render_to_response("login.html", RequestContext(request))

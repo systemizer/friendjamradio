@@ -42,7 +42,7 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
 
     #My Apps
-    'web'
+    'web',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -68,8 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'web.context_processors.auth'
+                'django.contrib.messages.context_processors.messages'
             ],
         },
     },

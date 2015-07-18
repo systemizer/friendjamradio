@@ -1,5 +1,21 @@
 {% extends "base.html" %}
+{% load web_extras %}
 
 {% block body %}
-Hello WOrld
+<table class="table table-stripped">
+  <thead>
+    <th>Title</th>
+    <th>Artist</th>
+    <th>Duration</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    {% for track in tracks %}
+    <tr>
+      <td>{{ track.title|truncatechars:50 }}</td>
+      <td>{{ track.user.username }}</td>
+      <td>{{ track.duration|nice_duration }}</td>
+    </tr>
+    {% endfor %}
+</table>
 {% endblock %}
