@@ -68,7 +68,8 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages'
+                'django.contrib.messages.context_processors.messages',
+                'web.context_processors.auth'
             ],
         },
     },
@@ -115,6 +116,7 @@ AUTHENTICATION_BACKENDS = (
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'http://localhost:8000'
 LOGIN_URL = '/login/'
+STATIC_URL = '/static/'
 
 try:
     from local_settings import *
