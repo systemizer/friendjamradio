@@ -109,6 +109,7 @@ STATIC_URL = '/static/'
 
 AUTHENTICATION_BACKENDS = (
     'social.backends.soundcloud.SoundcloudOAuth2',
+    'social.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 

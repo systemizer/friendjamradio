@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
 {% block body %}
-<a href="{% url 'social:begin' backend='soundcloud' %}">Login</a>
+<a href="{% url 'social:begin' backend='soundcloud' %}">Soundcloud Login</a>
+<a href="{% url 'social:begin' backend='facebook' %}">Facebook Login</a>
 {% endblock %}
