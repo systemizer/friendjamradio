@@ -12,7 +12,7 @@ def index(request, userid=None):
     client = soundcloud_client_for_user(user)
 
     tracks = [s['origin'] for s in
-              client.get("/me/activities").obj['collection']]
+              client.get("/me/activities", limit=50).obj['collection']]
 
     return render_to_response("index.html", {"tracks": tracks},
                               RequestContext(request))
