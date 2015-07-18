@@ -7,23 +7,8 @@
     <h1>Login to get started</h1>
   </center>
   <hr />
-  <div class="col-md-offset-2 col-md-3">
-    <div class="login-container">
-      <a href="{% url 'social:begin' backend='soundcloud' %}">
-        <img src="{% static 'web/img/sc.png' %}" align=center />
-      </a>
-      {% if webauth.soundcloud %}<p>Logged in!</p>{% endif %}
-    </div>
-  </div>
-  <div class="col-md-3 col-md-offset-2">
-    <div class="login-container">
-      <a href="{% url 'social:begin' backend='facebook' %}">
-        <img src="{% static 'web/img/fb.png' %}" align=center />
-      </a>
-      {% if webauth.facebook %}<p>Logged in!</p>{% endif %}
-    </div>
-  </div>
+  <a href="{% url 'social:begin' backend='soundcloud' %}">
+    <img src="{% static 'web/img/sc.png' %}" align=center />
+  </a>
 </div>
-
-
 {% endblock %}

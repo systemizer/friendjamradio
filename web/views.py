@@ -4,7 +4,7 @@ from django.template import RequestContext
 
 from web.utils import fb_sc_login_required
 
-@fb_sc_login_required
+@login_required
 def index(request):
     return render_to_response("index.html", RequestContext(request))
 
