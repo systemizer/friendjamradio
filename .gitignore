@@ -1,0 +1,5 @@
+venv
+*~
+*pyc
+db.sqlite3
+friendjamradio/local_settings.py
