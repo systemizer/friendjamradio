@@ -16,5 +16,6 @@ Including another URLconf
 from django.conf.urls import include, url
 
 urlpatterns = [
-    url('', include('social.apps.django_app.urls', namespace='social'))
+    url('^auth/', include('social.apps.django_app.urls', namespace='social')),
+    url('', include('web.urls', namespace='web'))
 ]

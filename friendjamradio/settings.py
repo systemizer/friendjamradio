@@ -39,7 +39,10 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     #Third Party Apps
-    'social.apps.django_app.default'
+    'social.apps.django_app.default',
+
+    #My Apps
+    'web'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -65,9 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'social.apps.django_app.context_processors.backends',
-                'social.apps.django_app.context_processors.login_redirect',
+                'django.contrib.messages.context_processors.messages'
             ],
         },
     },
@@ -107,11 +108,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTHENTICATION_BACKENDS = (
-    'social.backends.soundcloud.SoundcloudOAuth2'
+    'social.backends.soundcloud.SoundcloudOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'http://localhost:8000'
+LOGIN_URL = '/login/'
 
 try:
     from local_settings import *
