@@ -120,7 +120,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'http://localhost:8000'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'https://friendjamradio.herokuapp.com'
 LOGIN_URL = '/login/'
 STATIC_URL = '/static/'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
