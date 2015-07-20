@@ -1,0 +1,1 @@
+web: gunicorn friendjamradio.wsgi --log-file -

@@ -25,7 +25,7 @@ SECRET_KEY = 'nb5!+9k71h10pbc^u7!gpapv1#2vm&&n2qf=ra$(i3&_x(9^%j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -80,7 +80,8 @@ WSGI_APPLICATION = 'friendjamradio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = {
+import dj_database_url
+DATABASES = dj_database_url.config() or {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
@@ -107,6 +108,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'web', 'static'),
+    )
+
 AUTHENTICATION_BACKENDS = (
     'social.backends.soundcloud.SoundcloudOAuth2',
     'django.contrib.auth.backends.ModelBackend',
@@ -115,6 +120,10 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'http://localhost:8000'
 LOGIN_URL = '/login/'
 STATIC_URL = '/static/'
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+SOCIAL_AUTH_SOUNDCLOUD_KEY = os.environ.get("SOCIAL_AUTH_SOUNDCLOUD_KEY")
+SOCIAL_AUTH_SOUNDCLOUD_SECRET = os.environ.get("SOCIAL_AUTH_SOUNDCLOUD_SECRET")
 
 try:
     from local_settings import *
