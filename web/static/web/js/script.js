@@ -3,13 +3,13 @@ curTrackIndex = 1
 $(document).ready(function() {
   $('.play-track').click(function() {
     curTrackIndex = parseInt($(this).data("index"));
-    generateIframe($("#playerContainer"), curTrackIndex);
+    generateIframe($("#playerContainer"), curTrackIndex,  true);
   });
 
-  generateIframe($("#playerContainer"), curTrackIndex);
+  generateIframe($("#playerContainer"), curTrackIndex, false);
 });
 
-function generateIframe(container$, trackIndex) {
+function generateIframe(container$, trackIndex, autoplay) {
   container$.empty();
 
   var iframe$ = $('<iframe width="100%" height="450" frameborder="0"></iframe>')
@@ -18,9 +18,11 @@ function generateIframe(container$, trackIndex) {
   container$.prepend(iframe$);
 
   var widget = SC.Widget(iframe$[0]);
-  widget.bind(SC.Widget.Events.READY, function() { widget.play(); });
+  if (autoplay) {
+    widget.bind(SC.Widget.Events.READY, function() { widget.play(); });
+  }
   widget.bind(SC.Widget.Events.FINISH, function() {
     curTrackIndex+=1;
-    generateIframe(container$, curTrackIndex);
+    generateIframe(container$, curTrackIndex, true);
   });
 }
