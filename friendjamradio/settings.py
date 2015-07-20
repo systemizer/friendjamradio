@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'nb5!+9k71h10pbc^u7!gpapv1#2vm&&n2qf=ra$(i3&_x(9^%j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -54,6 +54,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+
+    'sslify.middleware.SSLifyMiddleware'
 )
 
 ROOT_URLCONF = 'friendjamradio.urls'
@@ -120,7 +122,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'https://friendjamradio.herokuapp.com'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'https://friendjamradio.herokuapp.com/auth/complete/soundcloud/'
 LOGIN_URL = '/login/'
 STATIC_URL = '/static/'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

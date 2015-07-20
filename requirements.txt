@@ -2,6 +2,7 @@
 dj-database-url==0.3.0
 dj-static==0.0.6
 Django==1.8.3
+django-sslify==0.2.7
 facebook-sdk==0.4.0
 fudge==1.0.3
 gunicorn==19.3.0
