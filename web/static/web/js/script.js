@@ -1,6 +1,26 @@
+curTrackIndex = 1
+
 $(document).ready(function() {
   $('.play-track').click(function() {
-    var trackId = $(this).data("trackid");
-    $(".player iframe").attr("src", "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/" + trackId + "&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true");
+    curTrackIndex = parseInt($(this).data("index"));
+    generateIframe($("#playerContainer"), curTrackIndex);
   });
-})
+
+  generateIframe($("#playerContainer"), curTrackIndex);
+});
+
+function generateIframe(container$, trackIndex) {
+  container$.empty();
+
+  var iframe$ = $('<iframe width="100%" height="450" frameborder="0"></iframe>')
+  var curTrackId = $(".play-track[data-index="+curTrackIndex+"]").data("trackid");
+  iframe$.attr("src", "//w.soundcloud.com/player/?url=https://api.soundcloud.com/tracks/" + curTrackId + "&amp;hide_related=true&amp;visual=true&amp")
+  container$.prepend(iframe$);
+
+  var widget = SC.Widget(iframe$[0]);
+  widget.bind(SC.Widget.Events.READY, function() { widget.play(); });
+  widget.bind(SC.Widget.Events.FINISH, function() {
+    curTrackIndex+=1;
+    generateIframe(container$, curTrackIndex);
+  });
+}
