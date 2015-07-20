@@ -2,22 +2,24 @@
 {% load web_extras %}
 
 {% block body %}
+<div class="row">
+  <div class="col-md-2">
+    <h3>Users</h3>
+    <ul class="list-group">
+      {% for user in users %}
+      <a href="?userid={{ user.id }}">
+        <li class="list-group-item {% if user == cur_user %}active{% endif %}">
+          {{ user.username }}
+        </li>
+      </a>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="col-md-10">
 <div class="player">
   <div style="width:100%" id="playerContainer"></div>
 </div>
 <div>
-  <form class="form-horizontal" method="GET" action="">
-    <div class="form-group">
-      <div class="col-md-12">
-        <select name="userid" class="user-select form-control">
-          {% for user in users %}
-          <option value="{{ user.id }}">{{ user.username }}</option>
-          {% endfor %}
-        </select>
-      </div>
-    </div>
-  </form>
-</div>
 <table class="table table-stripped">
   <thead>
     <th></th>
@@ -35,4 +37,5 @@
     </tr>
     {% endfor %}
 </table>
+</div>
 {% endblock %}

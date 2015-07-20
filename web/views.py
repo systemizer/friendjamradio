@@ -17,7 +17,8 @@ def index(request):
 
     users = User.objects.all()
     return render_to_response("index.html",
-                              {"tracks": tracks, "users": users},
+                              {"tracks": tracks, "users": users,
+                               "cur_user": user},
                               RequestContext(request))
 
 def login(request):
